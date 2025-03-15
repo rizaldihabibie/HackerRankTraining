@@ -15,7 +15,6 @@ class BinaryNode {
 
 public class LCAinBinaryTree {
     // LCA = Lowest Common Ancestor
-
     public static BinaryNode findLCA(BinaryNode root, int n1, int n2 ) {
         List<BinaryNode> path1 = new ArrayList<>();
         List<BinaryNode> path2 = new ArrayList<>();

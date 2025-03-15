@@ -10,32 +10,46 @@ class Node {
 }
 
 public class DeleteNthNodeElement {
+    
+    public static void main(String[] args) {
+        int[] values = new int[]{1,2,3,4,5,6,7,8,9,10};
+                
+        Node head = new Node(values[0]);
+        Node current = head;
+        for (int i = 1; i < values.length; i++) {
+            current.next = new Node(values[i]);
+            current = current.next;
+        }
+        
+        
+        Node result = delete(head, 10);
+        while(result.next != null) {
+            System.out.println(result.data);
+            result = result.next;
+        }
+        System.out.println(result.data);
+        
+    }
 
     public static Node delete(Node head, int n) {
-        // initiate node size
-        int k = 0;
-
-        // initiate current
+        int k = 1;
         Node current = head;
-
-        // find out the node length
-        while(current != null) {
+        
+        while(current.next != null) {
             current = current.next;
             k++;
         }
-
-        // handle edge case : removed the head
-        if (k-n == 0) return head.next;
-
-        // set the current back to the head
+                
+        if(k-n == 0) return head.next;
+            
         current = head;
-
-        for (int i = 0; i< k-n; i++) {
+        
+        for(int i = 0 ; i< k-n; i++) {
             current = current.next;
         }
-
+        
         current.next = current.next.next;
-
-        return current;
+        
+        return head;
     }
 }
