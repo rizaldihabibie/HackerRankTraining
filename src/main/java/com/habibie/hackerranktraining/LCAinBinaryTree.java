@@ -41,36 +41,32 @@ public class LCAinBinaryTree {
         List<BinaryNode> path1 = new ArrayList<>();
         List<BinaryNode> path2 = new ArrayList<>();
         
-        if (!findPath(root, path1, n1) || !findPath(root, path2, n2)) {
-            return null;
-        }
+        if (!findPath(root, path1, n1) || !findPath(root, path2, n2)) return null;
         
         int i;
-        for(i = 0; i< path1.size() && i< path2.size(); i++) {
-            System.out.println("Comparing "+path1.get(i).data+" with "+path2.get(i).data);
-            if(path1.get(i) != path2.get(i)) {
+        for (i=0; i<path1.size() && i<path2.size(); i++) {
+            if (path1.get(i) != path2.get(i)) {
                 return path1.get(i-1);
             }
         }
         
         return path1.get(i-1);
-        
     }
     
-    public static boolean findPath(BinaryNode root,List<BinaryNode> path, int n) {
-        
-        if (root == null) return false;
+    public static boolean findPath(BinaryNode root, List<BinaryNode> path, int n) {
+        if (root == null) return false; // it means the child value is not found in the node
         
         path.add(root);
         
-        if(root.data == n ||
+        if (root.data == n ||
                 findPath(root.left, path, n) ||
                 findPath(root.right, path, n)
                 ) {
-            return true;
+            return true;            
         }
         
-        path.remove(path.size() -1);
+        path.remove(path.size()-1);
+        
         return false;
     }
 }
