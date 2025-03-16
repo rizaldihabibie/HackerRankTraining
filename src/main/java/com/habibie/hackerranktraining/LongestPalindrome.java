@@ -19,32 +19,31 @@ public class LongestPalindrome {
     public static String longestPalindrome(String s) {
         
         int stringLength = s.length();
+        
         if (stringLength == 0) return "";
         
-        int start = 0, maxLength = 1;
+        int startIndex = 0;
+        int maxLength = 1; // 1 for default. it will take first char
         
-        for (int i=0; i < stringLength; i++) {
-            
-            for (int j=0; j <= 1; j++) {
-                // why 1 ? to check the middle of the palindrome string
+        for (int i = 0; i<stringLength; i++) {
+            for (int j=0; j<= 1; j++) {
                 int low = i;
-                int high = i + j;
+                int high = i+j;
                 
                 while (low >= 0 && high < stringLength && s.charAt(low) == s.charAt(high)) {
-                    int currentPalindromeLength = high - low +1;
-                    if (currentPalindromeLength > maxLength) {
-                        start = low;
-                        maxLength = currentPalindromeLength;
+                    int currentLength = high - low + 1;
+                    if (currentLength > maxLength) {
+                        maxLength = currentLength;
+                        startIndex = low;
                     }
                     
                     low--;
                     high++;
-                }                
+                }
             }
         }
         
-        return s.substring(start, start + maxLength);
-
+        return s.substring(startIndex, startIndex + maxLength);
     }
     
 }
