@@ -22,7 +22,7 @@ public class DeleteNthNodeElement {
         }
         
         
-        Node result = delete(head, 10);
+        Node result = delete(head, 3);
         while(result.next != null) {
             System.out.println(result.data);
             result = result.next;
@@ -32,19 +32,21 @@ public class DeleteNthNodeElement {
     }
 
     public static Node delete(Node head, int n) {
-        int k = 1;
+        int nodeLength = 1;
+        
         Node current = head;
         
         while(current.next != null) {
             current = current.next;
-            k++;
+            nodeLength++;
         }
-                
-        if(k-n == 0) return head.next;
-            
+        
+        
+        if (nodeLength - n == 0) return head.next;
+        
         current = head;
         
-        for(int i = 0 ; i< k-n; i++) {
+        for(int i = 1; i < nodeLength - n; i++) {
             current = current.next;
         }
         
